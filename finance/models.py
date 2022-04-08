@@ -14,6 +14,9 @@ class FinanceCategory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField()
 
+    class Meta:
+        unique_together = ("user", "title")
+
 
 class FinancialAccounting(models.Model):
     """
