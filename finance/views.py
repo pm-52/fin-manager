@@ -1,8 +1,7 @@
-from typing import Any
-from django.http import HttpResponse
 from rest_framework import viewsets
 from rest_framework.serializers import BaseSerializer
 from rest_framework.permissions import IsAuthenticated
+from finance.filters import DateTimeFilter
 
 from finance.models import FinanceCategory, FinancialAccounting
 from finance.serializers import CategorySerializer, FinancialAccountingSerializer
@@ -13,6 +12,7 @@ from finance.serializers import CategorySerializer, FinancialAccountingSerialize
 class WaterfallViewSet(viewsets.ModelViewSet):
     serializer_class = FinancialAccountingSerializer
     permission_classes = [IsAuthenticated]
+    filter_class = DateTimeFilter
 
     def get_queryset(self):
         user = self.request.user
