@@ -19,9 +19,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from finance.urls import finance_router
-
+from authorization.urls import registration_router
 
 urlpatterns = [
+    path(r"register/", include(registration_router.urls), name="register"),
     path(r"finance/", include(finance_router.urls), name="finance"),
     path(r"token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path(r"token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
