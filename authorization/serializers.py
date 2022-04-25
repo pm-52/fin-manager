@@ -6,22 +6,27 @@ UserModel = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
 
-    # password = serializers.CharField(write_only=True)
-
+    password2 = serializers.CharField(style={"input_type": "password"}, write_only=True)
+    
     def create(self, validated_data):
-
         user = UserModel.objects.create_user(
-            username=validated_data['username'],
-            password=validated_data['password'],
+            username=validated_data["username"],
+            email=validated_data["email"]
         )
+
+        password = validated_data["password"]
+        password2 = validated_data["password2"]
         
+        if password != password2:
+            raise serializers.ValidationError({"password": "Passwords must match."})
+
+        user.set_password(validated_data["password"])
         return user
 
     class Meta:
         model = UserModel
-        # Tuple of serialized model fields (see link [2])
-        fields = ("username", "password")
+        fields = ("username", "email", "password", "password2")
 
-        # extra_kwargs = {
-        #     "password": {"write_only": True},
-        # }
+        extra_kwargs = {
+            "password": {"write_only": True},
+        }
