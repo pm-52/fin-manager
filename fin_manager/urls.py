@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from finance.urls import finance_router
-from authorization.urls import registration_router
+from user.urls import registration_router
 
 urlpatterns = [
     path(r"register/", include(registration_router.urls), name="register"),

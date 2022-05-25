@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "authorization",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "finance",
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "fin_manager.urls"
-AUTH_USER_MODEL = "authorization.Account"
+# AUTH_USER_MODEL = "user.Account"
 
 TEMPLATES = [
     {
