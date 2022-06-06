@@ -1,0 +1,21 @@
+name: Deploy to server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - users: actions/checkout@master
+      - id: deploy
+      name: Deploy to server
+      uses: idoberko2/dokku-deploy-github-actions@v1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        dokku-host: 'http://v973398.hosted-by-vdsina.ru'
+        app-name: 'fin-manager'
+
