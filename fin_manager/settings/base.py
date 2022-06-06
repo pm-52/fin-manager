@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "finance",
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "fin_manager.urls"
+# AUTH_USER_MODEL = "user.Account"
 
 TEMPLATES = [
     {
