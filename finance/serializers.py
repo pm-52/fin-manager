@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from finance.models import FinanceCategory, FinancialAccounting
+from finance.models import FinanceCategory, FinanceCategoryConstructor, FinancialAccounting
 
 
 class FinancialAccountingSerializer(serializers.ModelSerializer):
@@ -15,6 +15,16 @@ class FinancialAccountingSerializer(serializers.ModelSerializer):
     class Meta:
         model = FinancialAccounting
         fields = ["id", "category", "value", "created"]
+
+
+class CategoryConstructorSerializer(serializers.ModelSerializer):
+    """
+    Category Constructor serializer
+    """
+
+    class Meta:
+        model = FinanceCategoryConstructor
+        fields = ["id", "category", "type", "color", "emoji"]
 
 
 class CategorySerializer(serializers.ModelSerializer):

@@ -1,3 +1,4 @@
+from binhex import FInfo
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -16,6 +17,20 @@ class FinanceCategory(models.Model):
 
     class Meta:
         unique_together = ("user", "title")
+
+
+class FinanceCategoryConstructor(models.Model):
+    """
+    Constructor for user's set of categories
+    """
+
+    # id = models.IntegerField(unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey(FinanceCategory, null=True, on_delete=models.SET_NULL)
+    type = models.IntegerField()
+    color = models.CharField(max_length=10)
+    emoji = models.CharField(max_length=10)
+    
 
 
 class FinancialAccounting(models.Model):
